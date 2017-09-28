@@ -558,9 +558,11 @@ open class CameraManager: NSObject, AVCaptureFileOutputRecordingDelegate, UIGest
     fileprivate lazy var zoomGesture = UIPinchGestureRecognizer()
     
     fileprivate func attachZoom(_ view: UIView) {
-        zoomGesture.addTarget(self, action: #selector(CameraManager._zoomStart(_:)))
-        view.addGestureRecognizer(zoomGesture)
-        zoomGesture.delegate = self
+        DispatchQueue.main.async {
+            zoomGesture.addTarget(self, action: #selector(CameraManager._zoomStart(_:)))
+            view.addGestureRecognizer(zoomGesture)
+            zoomGesture.delegate = self
+        }
     }
     
     open func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
