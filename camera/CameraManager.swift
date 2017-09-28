@@ -559,9 +559,9 @@ open class CameraManager: NSObject, AVCaptureFileOutputRecordingDelegate, UIGest
     
     fileprivate func attachZoom(_ view: UIView) {
         DispatchQueue.main.async {
-            zoomGesture.addTarget(self, action: #selector(CameraManager._zoomStart(_:)))
-            view.addGestureRecognizer(zoomGesture)
-            zoomGesture.delegate = self
+            self.zoomGesture.addTarget(self, action: #selector(CameraManager._zoomStart(_:)))
+            view.addGestureRecognizer(self.zoomGesture)
+            self.zoomGesture.delegate = self
         }
     }
     
